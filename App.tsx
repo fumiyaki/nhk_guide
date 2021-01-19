@@ -1,18 +1,14 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
-import { GuideCard } from "./src/components/molecules/GuideCard";
-import { mockGuideData } from "./src/utils/mockData";
+import { StyleSheet, SafeAreaView } from "react-native";
+import { mockGuideListData } from "./src/utils/mockData";
+import { GuideList } from "./src/components/organisms/GuideList";
 
 export default function App() {
   return (
     <SafeAreaView>
-      <View style={styles.container}>
-        <GuideCard guide={mockGuideData} />
-      </View>
+      <GuideList guideList={mockGuideListData} />
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { margin: 5 },
-});
+const styles = StyleSheet.create({});
