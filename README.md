@@ -46,3 +46,10 @@
 - staging：リリース直前のブランチ
 - master：リリースされるブランチ
 - hotfix：リリースされたコードの修正のためのブランチ
+
+# 苦労した点
+
+## GuideCard の追加
+
+- 普通の CSS が使えると思って display: flex を使おうとしたら動かず、flexDirection: "row"で横なることが判明。しかし、今度は image と text を横並びにしたら text が画面が今で伸びてしまい、flex:1 flex:2 で対応出来ることに気づくまで時間がかかった。
+- Android Emulator が重く、起動・ホットリロードが上手く動作しなかった。iPhone Emulator のみで対応して、Android は毎回ではなく適宜確認した。
