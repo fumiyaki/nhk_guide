@@ -27,7 +27,7 @@ export const GuideCard: React.FC<Props> = ({ guide }: Props) => {
             {guide.title}
           </Text>
           <Text style={styles.content} numberOfLines={2}>
-            {guide.content}
+            {guide.content === "" ? "内容未定" : guide.content}
           </Text>
         </View>
         <Text style={styles.airtime}>{formatAirtime(guide.start_time)}</Text>
