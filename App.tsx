@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { GuideList } from "./src/components/organisms/GuideList";
 import { Guide } from "./src/types/guide";
-import { getNHKGuideListData } from "./src/api/datasources/nhk_guide_request";
+import { getNHKGuideListData } from "./src/api/repository/nhk_guide_repository";
 
 const area = "130";
 const service = "g1";
@@ -11,10 +11,10 @@ const date = "2021-01-23";
 export default function App() {
   const [guideList, setGuideList] = useState<Guide[] | undefined>();
   useEffect(() => {
-    getData();
+    getListData();
   }, []);
 
-  const getData = async () => {
+  const getListData = async () => {
     const data = await getNHKGuideListData(area, service, date);
     setGuideList(data);
   };
