@@ -19,7 +19,7 @@ import { Guide } from "../../types/guide";
  * @param {string} date - 日付（YYYY-MM-DD形式、当日から１週間先までの日付を指定）
  * @return {Guide[] | undefined} - [通信成功、エラー] GuideListかundefinedを返す
  */
-export const getNHKGuideListData = async (
+export const fetchNHKGuideListData = async (
   area: string,
   service: string,
   date: string

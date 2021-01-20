@@ -1,4 +1,6 @@
-export const mockGuideData = {
+import { Guide } from "../../types/guide";
+
+export const mockGuideData: Guide = {
   id: "2021011515550",
   event_id: "15550",
   start_time: "2021-01-15T04:50:00+09:00",
@@ -36,7 +38,7 @@ export const mockGuideData = {
   genres: ["0006", "0000", "0007"],
 };
 
-export const mockGuideListData = [
+export const mockGuideListData: Guide[] = [
   {
     id: "2021011515550",
     event_id: "15550",
