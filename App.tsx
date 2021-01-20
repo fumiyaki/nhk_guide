@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { GuideList } from "./src/components/organisms/GuideList";
-import axios from "axios";
-import { NHK_API_KEY, NHK_API_URL } from "@env";
+import { Guide } from "./src/types/guide";
+import { getNHKGuideListData } from "./src/api/datasources/nhk_guide_request";
 
 const area = "130";
 const service = "g1";
-const date = "2021-01-20";
-const url = `${NHK_API_URL}/list/${area}/${service}/${date}.json?key=${NHK_API_KEY}`;
+const date = "2021-01-23";
 
 export default function App() {
-  const [guideList, setGuideList] = useState([]);
+  const [guideList, setGuideList] = useState<Guide[] | undefined>();
   useEffect(() => {
-    getNHKGuideData();
+    getData();
   }, []);
 
-  const getNHKGuideData = async () => {
-    const response = await axios.get(url);
-    setGuideList(response.data.list.g1);
+  const getData = async () => {
+    const data = await getNHKGuideListData(area, service, date);
+    setGuideList(data);
   };
 
   return (
