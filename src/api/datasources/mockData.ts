@@ -1,4 +1,4 @@
-import { Guide } from "../../types/guide";
+import { Guide, GuideDetail } from "../../types/guide";
 
 export const mockGuideData: Guide = {
   id: "2021011515550",
@@ -34,6 +34,51 @@ export const mockGuideData: Guide = {
   content: "【出演】ＮＨＫ解説委員…竹田忠",
   act: "竹田忠",
   genres: ["0006", "0000", "0007"],
+};
+
+export const mockGuideDetail: GuideDetail = {
+  id: "2021012319870",
+  event_id: "19870",
+  start_time: "2021-01-23T23:00:00+09:00",
+  end_time: "2021-01-23T23:30:00+09:00",
+  area: {
+    id: "130",
+    name: "東京",
+  },
+  service: {
+    id: "g1",
+    name: "ＮＨＫ総合１",
+    logo_s: {
+      url: "//www.nhk.or.jp/common/img/media/gtv-100x50.png",
+      width: "100",
+      height: "50",
+    },
+    logo_m: {
+      url: "//www.nhk.or.jp/common/img/media/gtv-200x100.png",
+      width: "200",
+      height: "100",
+    },
+    logo_l: {
+      url: "//www.nhk.or.jp/common/img/media/gtv-200x200.png",
+      width: "200",
+      height: "200",
+    },
+  },
+  title: "ＳＯＮＧＳ「密着！大泉洋紅白歌合戦ＳＰ」",
+  subtitle:
+    "ＳＯＮＧＳ責任者・大泉洋が白組司会を務めた去年の第７１回ＮＨＫ紅白歌合戦。ＳＯＮＧＳは大泉に密着。けん玉シーンの舞台裏や大泉が感動した歌唱シーンを一挙お届け！",
+  content:
+    "ＳＯＮＧＳ責任者・大泉洋が白組司会を務めた去年の紅白歌合戦。ＳＯＮＧＳでは大泉に独占密着！実はヒヤヒヤだったけん玉シーンの舞台裏や、大泉が心を打ち抜かれた感動の歌唱シーンを一挙お届け！放送終了後まさかの展開に大泉タジタジ！？内村光良、二階堂ふみからのメッセージも！出演：あいみょん、石川さゆり、鈴木雅之、Ｓｕｐｅｒｆｌｙ、玉置浩二、氷川きよし、福山雅治、ＭＩＳＩＡ、三山ひろし、ＬｉＳＡ",
+  act:
+    "【出演】大泉洋，内村光良，二階堂ふみ，あいみょん，石川さゆり，鈴木雅之，Ｓｕｐｅｒｆｌｙ，玉置浩二，氷川きよし，福山雅治，ＭＩＳＩＡ，三山ひろし，ＬｉＳＡ，【語り】戸次重幸",
+  genres: ["0400", "0401", "0415"],
+  program_logo: {
+    url: "//www.nhk.or.jp/prog/img/599/599.png",
+    width: "640",
+    height: "640",
+  },
+  program_url: "//nhk.jp/P599",
+  hashtags: ["#SONGS"],
 };
 
 export const mockGuideListData: Guide[] = [

@@ -32,3 +32,15 @@ export type Guide = {
   act: string;
   genres: string[];
 };
+
+export type GuideDetail =
+  | Guide
+  | {
+      program_logo: {
+        url: string;
+        width: string;
+        height: string;
+      };
+      program_url: string;
+      hashtags: string[];
+    };
