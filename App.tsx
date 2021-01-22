@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { StyleSheet, SafeAreaView } from "react-native";
+import { GuideList } from "./src/components/organisms/GuideList";
+import { Guide } from "./src/types/guide";
+import { getNHKGuideListData } from "./src/api/repository/nhk_guide_repository";
+
+const area = "130";
+const service = "g1";
+const date = "2021-01-23";
 
 export default function App() {
+  const [guideList, setGuideList] = useState<Guide[] | undefined>();
+  useEffect(() => {
+    getListData();
+  }, []);
+
+  const getListData = async () => {
+    const data = await getNHKGuideListData(area, service, date);
+    setGuideList(data);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <GuideList guideList={guideList} />
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});
