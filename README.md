@@ -47,9 +47,30 @@
 - master：リリースされるブランチ
 - hotfix：リリースされたコードの修正のためのブランチ
 
+# Trello
+
+[ボード](https://trello.com/b/T33d9Chv/nhk-guide)
+
 # 苦労した点
 
-## GuideCard の追加
+## ユーザーは番組表を見ることが出来る
+
+### GuideCard の追加
 
 - 普通の CSS が使えると思って display: flex を使おうとしたら動かず、flexDirection: "row"で横なることが判明。しかし、今度は image と text を横並びにしたら text が画面が今で伸びてしまい、flex:1 flex:2 で対応出来ることに気づくまで時間がかかった。
 - Android Emulator が重く、起動・ホットリロードが上手く動作しなかった。iPhone Emulator のみで対応して、Android は毎回ではなく適宜確認した。
+
+### API 経由で GuideList のデータを取得する
+
+- .env を使用できる API が複数あり、やりたいことは単純なのに単純には導入できなさそうだった。色々調べて単純に出来そうなものを使用した。
+- new Promise<Guide[]>((resolve, reject) => {})の resolve と reject の理解が曖昧。この 2 つはどこからやってくるのだろうか…。2 月中に非同期についてもう少し勉強しなければいけないと感じた。
+- ただ repository を追加したが、interface とかきちんと整備しなければいけないような気がした。しかし、今回は mock と api の出し分けのための追加なので、一旦スルーして、2 月に再勉強しようと思う。
+
+### テストの作成
+
+- image コンポーネントのテストのしかたがわからなかった。image の DOM までは取得できたが、どうテストすればよいかわからなかった。
+  考えたこと
+  - 渡している url で検証できないか（以下を参考）
+  - https://callstack.github.io/react-native-testing-library/docs/api-queries/#queries
+  - https://jestjs.io/docs/ja/expect#tobevalue
+- そもそも Expect のメソッドがどういうモノがあるのかがあまり把握できていない。
