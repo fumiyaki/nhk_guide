@@ -11,26 +11,32 @@ type Props = {
 };
 
 export const GuideCard: React.FC<Props> = ({ guide }: Props) => {
+  const title = guide.title;
+  const url = "http:" + guide.service.logo_m.url;
+  const content = guide.content === "" ? "内容未定" : guide.content;
+  const start_time = formatAirtime(guide.start_time);
+
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.image_container}>
         <Image
           style={styles.image}
           source={{
-            uri: "http:" + guide.service.logo_m.url,
+            uri: url,
           }}
+          testID={`guide_image_component`}
         />
       </View>
       <View style={styles.info_container}>
         <View>
           <Text style={styles.title} numberOfLines={1}>
-            {guide.title}
+            {title}
           </Text>
           <Text style={styles.content} numberOfLines={2}>
-            {guide.content === "" ? "内容未定" : guide.content}
+            {content}
           </Text>
         </View>
-        <Text style={styles.airtime}>{formatAirtime(guide.start_time)}</Text>
+        <Text style={styles.airtime}>{start_time}</Text>
       </View>
     </TouchableOpacity>
   );
