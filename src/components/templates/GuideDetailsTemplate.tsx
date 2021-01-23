@@ -1,23 +1,31 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
-import { Guide } from "../../../src/types/guide";
+import { GuideDetails } from "../../types/guide";
 import layout from "../../constants/Layout";
 import { calcAirtime, formatAirtime } from "../../utils/index";
 
 const displayHeight = layout.window.height;
 
 type Props = {
-  guide: Guide;
+  guideDetail: GuideDetails | undefined;
 };
 
-export const GuideDetails: React.FC<Props> = ({ guide }: Props) => {
-  const title = guide.title;
-  const url = "http:" + guide.service.logo_l.url;
-  const subtitle = guide.subtitle;
-  const content = guide.content === "" ? "内容未定" : guide.content;
-  const start_time = formatAirtime(guide.start_time, guide.end_time);
-  const act = guide.act;
-  const airTime = calcAirtime(guide.start_time, guide.end_time);
+export const GuideDetailsTemplate: React.FC<Props> = ({
+  guideDetail,
+}: Props) => {
+  if (guideDetail === undefined) {
+    return <Text>問題が発生しました。</Text>;
+  }
+  const title = guideDetail.title;
+  const url = "http:" + guideDetail.service.logo_l.url;
+  const subtitle = guideDetail.subtitle;
+  const content = guideDetail.content === "" ? "内容未定" : guideDetail.content;
+  const start_time = formatAirtime(
+    guideDetail.start_time,
+    guideDetail.end_time
+  );
+  const act = guideDetail.act;
+  const airTime = calcAirtime(guideDetail.start_time, guideDetail.end_time);
 
   return (
     <ScrollView showsVerticalScrollIndicator={true}>
