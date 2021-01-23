@@ -5,7 +5,7 @@ import layout from "../../constants/Layout";
 import { Guide } from "../../types/guide";
 
 const displayWidth = layout.window.width;
-const IMAGE_WIDTH = displayWidth / 3;
+
 type Props = {
   guide: Guide;
 };
@@ -14,7 +14,7 @@ export const GuideCard: React.FC<Props> = ({ guide }: Props) => {
   const title = guide.title;
   const url = "http:" + guide.service.logo_m.url;
   const content = guide.content === "" ? "内容未定" : guide.content;
-  const start_time = formatAirtime(guide.start_time);
+  const startTime = formatAirtime(guide.start_time, guide.end_time);
 
   return (
     <View style={styles.container}>
@@ -36,7 +36,7 @@ export const GuideCard: React.FC<Props> = ({ guide }: Props) => {
             {content}
           </Text>
         </View>
-        <Text style={styles.airtime}>{start_time}</Text>
+        <Text style={styles.airtime}>{startTime}</Text>
       </View>
     </View>
   );
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: IMAGE_WIDTH * 0.7,
+    height: displayWidth / 4,
   },
   info_container: {
     flex: 2,
