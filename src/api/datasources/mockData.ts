@@ -1,4 +1,4 @@
-import { Guide, GuideDetail } from "../../types/guide";
+import { Guide, GuideDetails } from "../../types/guide";
 
 export const mockGuideData: Guide = {
   id: "2021011515550",
@@ -36,7 +36,7 @@ export const mockGuideData: Guide = {
   genres: ["0006", "0000", "0007"],
 };
 
-export const mockGuideDetail: GuideDetail = {
+export const mockGuideDetail: GuideDetails = {
   id: "2021012319870",
   event_id: "19870",
   start_time: "2021-01-23T23:00:00+09:00",

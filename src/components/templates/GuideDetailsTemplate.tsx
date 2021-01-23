@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
 import { GuideDetails } from "../../types/guide";
 import layout from "../../constants/Layout";
 import { calcAirtime, formatAirtime } from "../../utils/index";
+import Hyperlink from "react-native-hyperlink";
 
 const displayHeight = layout.window.height;
 
@@ -17,7 +18,13 @@ export const GuideDetailsTemplate: React.FC<Props> = ({
     return <Text>問題が発生しました。</Text>;
   }
   const title = guideDetail.title;
-  const url = "http:" + guideDetail.service.logo_l.url;
+  let url: string;
+  if (guideDetail.program_logo && guideDetail.program_logo.url !== "") {
+    url = "http:" + guideDetail.program_logo.url;
+  } else {
+    url = "http:" + guideDetail.service.logo_l.url;
+  }
+
   const subtitle = guideDetail.subtitle;
   const content = guideDetail.content === "" ? "内容未定" : guideDetail.content;
   const start_time = formatAirtime(
@@ -26,6 +33,7 @@ export const GuideDetailsTemplate: React.FC<Props> = ({
   );
   const act = guideDetail.act;
   const airTime = calcAirtime(guideDetail.start_time, guideDetail.end_time);
+  const homepage = "http:" + guideDetail.program_url;
 
   return (
     <ScrollView showsVerticalScrollIndicator={true}>
@@ -68,6 +76,18 @@ export const GuideDetailsTemplate: React.FC<Props> = ({
         <Text style={styles.label}>内容時間</Text>
         <Text style={styles.contents}>{airTime}</Text>
       </View>
+
+      {homepage !== "" && (
+        <View style={styles.contents_container}>
+          <Hyperlink
+            linkDefault={true}
+            linkStyle={{ color: "#2980b9", fontWeight: "bold" }}
+          >
+            <Text style={styles.label}>公式サイト</Text>
+            <Text style={styles.contents}>{homepage}</Text>
+          </Hyperlink>
+        </View>
+      )}
     </ScrollView>
   );
 };
