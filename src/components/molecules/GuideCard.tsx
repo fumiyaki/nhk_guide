@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderColor: "#222222",
   },
   image_container: {
     flex: 1,
