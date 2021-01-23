@@ -9,8 +9,16 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const HomeStackNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="GuideList">
-      <Stack.Screen name="GuideList" component={NHKGuideList} />
-      <Stack.Screen name="GuideDetails" component={NHKGuideDetails} />
+      <Stack.Screen
+        name="GuideList"
+        component={NHKGuideList}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="GuideDetails"
+        component={NHKGuideDetails}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };
