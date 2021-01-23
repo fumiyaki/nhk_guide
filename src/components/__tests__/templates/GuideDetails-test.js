@@ -1,20 +1,27 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import { GuideDetails } from "../../templates/GuideDetails";
-import { mockGuideData } from "../../../api/datasources/mockData";
+import { GuideDetailsTemplate } from "../../templates/GuideDetailsTemplate";
+import { mockGuideDetail } from "../../../api/datasources/mockData";
 
 describe("GuideDetails Test", () => {
   it("すべてのデータが正しい時、全てが表示されている", () => {
-    const { getByText } = render(<GuideDetails guide={mockGuideData} />);
-
-    const title = getByText("時論公論「緊急事態宣言　休業手当を急げ！」");
-    const startTime = getByText("1/15(金) 4:50 - 5:00");
-    const subTitle = getByText(
-      "長引くコロナ禍。休業手当が受け取れない従業員が続出。企業が立て替える仕組みのため、その余裕がないか忌避したとみられる。新たな支援金も利用が伸びない。どうすれば？"
+    const { getByText } = render(
+      <GuideDetailsTemplate guideDetail={mockGuideDetail} />
     );
-    const content = getByText("【出演】ＮＨＫ解説委員…竹田忠");
-    const act = getByText("竹田忠");
-    const airTime = getByText("10分");
+
+    const title = getByText("ＳＯＮＧＳ「密着！大泉洋紅白歌合戦ＳＰ」");
+    const startTime = getByText("1/23(土) 23:00 - 23:30");
+    const subTitle = getByText(
+      "ＳＯＮＧＳ責任者・大泉洋が白組司会を務めた去年の第７１回ＮＨＫ紅白歌合戦。ＳＯＮＧＳは大泉に密着。けん玉シーンの舞台裏や大泉が感動した歌唱シーンを一挙お届け！"
+    );
+    const content = getByText(
+      "ＳＯＮＧＳ責任者・大泉洋が白組司会を務めた去年の紅白歌合戦。ＳＯＮＧＳでは大泉に独占密着！実はヒヤヒヤだったけん玉シーンの舞台裏や、大泉が心を打ち抜かれた感動の歌唱シーンを一挙お届け！放送終了後まさかの展開に大泉タジタジ！？内村光良、二階堂ふみからのメッセージも！出演：あいみょん、石川さゆり、鈴木雅之、Ｓｕｐｅｒｆｌｙ、玉置浩二、氷川きよし、福山雅治、ＭＩＳＩＡ、三山ひろし、ＬｉＳＡ"
+    );
+    const act = getByText(
+      "【出演】大泉洋，内村光良，二階堂ふみ，あいみょん，石川さゆり，鈴木雅之，Ｓｕｐｅｒｆｌｙ，玉置浩二，氷川きよし，福山雅治，ＭＩＳＩＡ，三山ひろし，ＬｉＳＡ，【語り】戸次重幸"
+    );
+    const airTime = getByText("30分");
+    const homepage = getByText("http://nhk.jp/P599");
 
     expect(title).toBeDefined();
     expect(startTime).toBeDefined();
@@ -22,5 +29,6 @@ describe("GuideDetails Test", () => {
     expect(content).toBeDefined();
     expect(act).toBeDefined();
     expect(airTime).toBeDefined();
+    expect(homepage).toBeDefined();
   });
 });
