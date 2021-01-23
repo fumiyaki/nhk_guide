@@ -1,8 +1,9 @@
 import React from "react";
-import { Text, SafeAreaView } from "react-native";
+import { SafeAreaView } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types/navigation";
 import { RouteProp } from "@react-navigation/native";
+import { GuideDetails } from "../templates/GuideDetails";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "GuideDetails">;
@@ -10,9 +11,10 @@ type Props = {
 };
 
 export const NHKGuideDetails: React.FC<Props> = ({ navigation, route }) => {
+  const { guide } = route.params;
   return (
     <SafeAreaView>
-      <Text>Guide Detail</Text>
+      <GuideDetails guide={guide}></GuideDetails>
     </SafeAreaView>
   );
 };
