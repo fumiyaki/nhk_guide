@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { formatAirtime } from "../../utils";
 import layout from "../../constants/Layout";
 import { Guide } from "../../types/guide";
@@ -17,7 +17,7 @@ export const GuideCard: React.FC<Props> = ({ guide }: Props) => {
   const start_time = formatAirtime(guide.start_time);
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.image_container}>
         <Image
           style={styles.image}
@@ -38,7 +38,7 @@ export const GuideCard: React.FC<Props> = ({ guide }: Props) => {
         </View>
         <Text style={styles.airtime}>{start_time}</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
