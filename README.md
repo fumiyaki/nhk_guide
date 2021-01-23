@@ -74,3 +74,7 @@
   - https://callstack.github.io/react-native-testing-library/docs/api-queries/#queries
   - https://jestjs.io/docs/ja/expect#tobevalue
 - そもそも Expect のメソッドがどういうモノがあるのかがあまり把握できていない。
+
+## ユーザーは番組を詳しく知ることが出来る
+
+- HomeStackNavigator を作っている時、initialRouteName を Home と Details で入れ替えた時にホットリロードで反映されず上手く動かないコードになっていると思い、色々と周辺コードを探り、時間を使ってしまった。再起動させたら普通に動いた。
