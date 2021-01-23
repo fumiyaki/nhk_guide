@@ -1,11 +1,11 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { formatAirtime } from "../../utils";
 import layout from "../../constants/Layout";
 import { Guide } from "../../types/guide";
 
 const displayWidth = layout.window.width;
-const IMAGE_WIDTH = displayWidth / 3;
+
 type Props = {
   guide: Guide;
 };
@@ -14,10 +14,10 @@ export const GuideCard: React.FC<Props> = ({ guide }: Props) => {
   const title = guide.title;
   const url = "http:" + guide.service.logo_m.url;
   const content = guide.content === "" ? "内容未定" : guide.content;
-  const start_time = formatAirtime(guide.start_time);
+  const startTime = formatAirtime(guide.start_time, guide.end_time);
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.image_container}>
         <Image
           style={styles.image}
@@ -36,9 +36,9 @@ export const GuideCard: React.FC<Props> = ({ guide }: Props) => {
             {content}
           </Text>
         </View>
-        <Text style={styles.airtime}>{start_time}</Text>
+        <Text style={styles.airtime}>{startTime}</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -46,13 +46,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderColor: "#222222",
   },
   image_container: {
     flex: 1,
   },
   image: {
     width: "100%",
-    height: IMAGE_WIDTH * 0.7,
+    height: displayWidth / 4,
   },
   info_container: {
     flex: 2,

@@ -10,7 +10,7 @@ describe("GuideCard Test", () => {
     );
     const title = getByText("時論公論「緊急事態宣言　休業手当を急げ！」");
     const content = getByText("【出演】ＮＨＫ解説委員…竹田忠");
-    const start_time = getByText("1/15(金) 4:50 - 放送");
+    const start_time = getByText("1/15(金) 4:50 - 5:00");
     const image = getByTestId("guide_image_component");
 
     expect(title).toBeDefined();
@@ -25,7 +25,7 @@ describe("GuideCard Test", () => {
     const { getByText, getByTestId } = render(<GuideCard guide={guide} />);
     const title = getByText("時論公論「緊急事態宣言　休業手当を急げ！」");
     const content = getByText("内容未定");
-    const start_time = getByText("1/15(金) 4:50 - 放送");
+    const start_time = getByText("1/15(金) 4:50 - 5:00");
     const image = getByTestId("guide_image_component");
 
     expect(title).toBeDefined();

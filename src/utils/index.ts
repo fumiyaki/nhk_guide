@@ -1,10 +1,19 @@
-export const formatAirtime = (iso8601: string): string => {
-  let datetime = new Date(iso8601);
-  const month = datetime.getMonth() + 1;
-  const date = datetime.getDate();
-  const hour = datetime.getHours();
-  const minute = datetime.getMinutes();
-  const dateOfWeek = datetime.getDay();
-  const dateOfWeekStr = ["日", "月", "火", "水", "木", "金", "土"][dateOfWeek];
-  return `${month}/${date}(${dateOfWeekStr}) ${hour}:${minute} - 放送`;
+import dayjs from "dayjs";
+import ja from "dayjs/locale/ja";
+dayjs.locale(ja);
+
+export const formatAirtime = (startTime: string, endTime: string): string => {
+  const start = dayjs(startTime);
+  const end = dayjs(endTime);
+
+  const airTime = `${start.format("M/DD(dd) H:mm")} - ${end.format("H:mm")}`;
+
+  return airTime;
+};
+
+export const calcAirtime = (startTime: string, endTime: string): string => {
+  const start = dayjs(startTime);
+  const end = dayjs(endTime);
+  const airTime = end.diff(start, "minute").toString() + "分";
+  return airTime;
 };
