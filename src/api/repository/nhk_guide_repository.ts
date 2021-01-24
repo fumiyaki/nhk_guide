@@ -3,7 +3,7 @@ import {
   fetchNHKGuideDetailsData,
 } from "../datasources/nhk_guide_request";
 import { mockGuideListData, mockGuideDetail } from "../datasources/mockData";
-import { Guide, GuideDetails } from "../../types/guide";
+import { Guide, GuideDetails, NHKGuideListViewModel } from "../../types/guide";
 
 // const MODE = "api";
 const MODE = "mock";
@@ -14,10 +14,14 @@ export const getNHKGuideListData = async (
   date: string = ""
 ) => {
   if (MODE === "api") {
-    return fetchNHKGuideListData(area, service, date);
+    let guideList = await fetchNHKGuideListData(area, service, date);
+    if (guideList === undefined) {
+      return undefined;
+    }
+    return separateGuideData(guideList);
   } else if (MODE === "mock") {
-    return new Promise<Guide[]>((resolve) => {
-      resolve(mockGuideListData);
+    return new Promise<NHKGuideListViewModel>((resolve) => {
+      resolve(separateGuideData(mockGuideListData));
     });
   }
 };
@@ -34,4 +38,16 @@ export const getNHKGuideData = async (
       resolve(mockGuideDetail);
     });
   }
+};
+
+const separateGuideData = (guideList: Guide[]) => {
+  // 番組表の中からランダムに1つ抽出
+  const i = Math.floor(Math.random() * Math.floor(guideList.length));
+  const recommendedGuide = guideList[i];
+
+  guideList = guideList.filter((guide) => guide.id !== recommendedGuide.id);
+  return {
+    guideList: guideList,
+    recommendedGuide: recommendedGuide,
+  };
 };
