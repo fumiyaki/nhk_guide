@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import ja from "dayjs/locale/ja";
+import { mockGuideData } from "../api/datasources/mockData";
 dayjs.locale(ja);
 
 export const formatAirtime = (startTime: string, endTime: string): string => {
@@ -16,4 +17,10 @@ export const calcAirtime = (startTime: string, endTime: string): string => {
   const end = dayjs(endTime);
   const airTime = end.diff(start, "minute").toString() + "分";
   return airTime;
+};
+
+export const makeMarker = () => {
+  let data = mockGuideData;
+  data.title = "marker";
+  return data;
 };
