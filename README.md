@@ -1,10 +1,12 @@
 # 開発環境の準備
 
 1. Node.js v14.15.4 をインストール
-2. リポジトリをクローン
-3. Terminal から`npm install`を実行
-4. `npm run start`で実行開始
-5. 立ち上がったブラウザから`Run on Android device/emulator`か`Run on iOS simulator`を押下
+1. リポジトリをクローン
+1. .env ファイルをプロジェクト直下に追加し
+   `NHK_API_KEY=OOOOOOOOO`, `NHK_API_URL=https://api.nhk.or.jp/v2/pg` の 2 つを記述
+1. Terminal から`npm install`を実行
+1. `npm run start`で実行開始
+1. 立ち上がったブラウザから`Run on Android device/emulator`か`Run on iOS simulator`を押下
 
 注：Android エミュレータは実行前に起動しておくこと
 
