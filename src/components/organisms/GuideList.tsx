@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, View, Text, TouchableOpacity } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import { Guide } from "../../../src/types/guide";
 import { RenderGuideCard } from "../../utils/RenderGuideCard";
 
@@ -22,12 +22,11 @@ export const GuideList: React.FC<Props> = ({
         <FlatList
           data={guideList}
           renderItem={({ item }: { item: Guide }) => (
-            <TouchableOpacity onPress={() => onPress(item)}>
-              <RenderGuideCard
-                recommendedGuide={recommendedGuide}
-                guide={item}
-              />
-            </TouchableOpacity>
+            <RenderGuideCard
+              recommendedGuide={recommendedGuide}
+              guide={item}
+              onPress={onPress}
+            />
           )}
           keyExtractor={(item, index) => index.toString()}
         />
