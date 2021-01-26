@@ -1,78 +1,84 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import { formatAirtime } from "../../utils";
+import React, { useEffect, useState } from "react";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { formatAirtime, truncate } from "../../utils";
 import layout from "../../constants/Layout";
-import { Guide } from "../../types/guide";
+import { GuideDetails } from "../../types/guide";
+import { getNHKGuideData } from "../../api/repository/nhk_guide_repository";
+import { chooseURL } from "../../utils/index";
 
 const displayHeight = layout.window.height;
+const displayWidth = layout.window.width;
+
+const area = "130";
+const service = "g1";
 
 type Props = {
-  guide: Guide;
+  guideId: string;
 };
 
-export const RecommendedGuideCard: React.FC<Props> = ({ guide }: Props) => {
-  const title = guide.title;
-  const url = "http:" + guide.service.logo_m.url;
-  const content = guide.content === "" ? "内容定" : guide.content;
-  const startTime = formatAirtime(guide.start_time, guide.end_time);
+export const RecommendedGuideCard: React.FC<Props> = ({ guideId }: Props) => {
+  const [guideDetails, setGuideDetails] = useState<GuideDetails | undefined>();
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getNHKGuideData(area, service, guideId);
+      setGuideDetails(data);
+    };
+    getData();
+  }, []);
 
-  return (
+  return guideDetails === undefined ? (
+    <View></View>
+  ) : (
     <View style={styles.container}>
-      <View style={styles.image_container}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: url,
-          }}
-          testID={`guide_image_component`}
-        />
-      </View>
-      <View style={styles.info_container}>
-        <View>
-          <Text style={styles.title} numberOfLines={1}>
-            {title}
+      <ImageBackground
+        source={{ uri: chooseURL(guideDetails) }}
+        style={styles.image}
+      >
+        <View style={styles.guide_info}>
+          <Text style={[styles.text, styles.title]}>
+            {truncate(guideDetails.title, 11)}
           </Text>
-          <Text style={styles.content} numberOfLines={2}>
-            {content}
+          <Text style={[styles.text, styles.subtitle]}>
+            {guideDetails.subtitle === ""
+              ? "内容未定"
+              : truncate(guideDetails.subtitle, 40)}
+          </Text>
+          <Text style={[styles.text, styles.airtime]}>
+            {formatAirtime(guideDetails.start_time, guideDetails.end_time)}
           </Text>
         </View>
-        <Text style={styles.airtime}>{startTime}</Text>
-      </View>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    backgroundColor: "#fff",
-    borderBottomWidth: 1,
-    borderColor: "#222222",
-    height: displayHeight / 3,
-  },
-  image_container: {
-    flex: 1,
+    height: displayHeight / 2,
   },
   image: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
+    justifyContent: "flex-end",
   },
-  info_container: {
-    flex: 2,
-    justifyContent: "space-between",
-    marginLeft: 8,
-    paddingTop: 5,
+  guide_info: {
+    backgroundColor: "#000000a0",
+    width: displayWidth * 0.9,
+    paddingTop: 10,
     paddingBottom: 5,
+    paddingLeft: 10,
+  },
+  text: {
+    color: "white",
+    marginBottom: 8,
+    fontWeight: "bold",
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
   },
-  content: {
-    marginTop: 5,
-    fontSize: 12,
+  subtitle: {
+    fontSize: 15,
   },
   airtime: {
-    fontSize: 10,
-    justifyContent: "flex-end",
+    fontSize: 13,
   },
 });
