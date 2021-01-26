@@ -8,6 +8,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types/navigation";
 import dayjs from "dayjs";
 import { safeArea } from "../../utils/safeArea";
+import { makeMarker } from "../../utils/index";
 
 const area = "130";
 const service = "g1";
@@ -18,6 +19,7 @@ type Props = {
 
 export const NHKGuideList: React.FC<Props> = ({ navigation }) => {
   const [guideList, setGuideList] = useState<Guide[] | undefined>();
+  const [recommendedGuide, setRecommendedGuide] = useState<Guide | undefined>();
   const onPressGuide = (guide: Guide) => {
     navigation.navigate("GuideDetails", { guideId: guide.id });
   };
@@ -26,7 +28,15 @@ export const NHKGuideList: React.FC<Props> = ({ navigation }) => {
     const today = dayjs().format("YYYY-MM-DD");
     const getListData = async () => {
       const data = await getNHKGuideListData(area, service, today);
-      setGuideList(data);
+      if (data !== undefined) {
+        const titleIsMarker: Guide = makeMarker();
+        data.guideList.unshift(titleIsMarker);
+        setGuideList(data.guideList);
+        setRecommendedGuide(data.recommendedGuide);
+      } else {
+        setGuideList(undefined);
+        setRecommendedGuide(undefined);
+      }
     };
     getListData();
   }, []);
@@ -34,7 +44,11 @@ export const NHKGuideList: React.FC<Props> = ({ navigation }) => {
   return (
     <SafeAreaView style={safeArea.style}>
       <StatusBar style="auto" />
-      <GuideList guideList={guideList} onPress={onPressGuide} />
+      <GuideList
+        recommendedGuide={recommendedGuide}
+        guideList={guideList}
+        onPress={onPressGuide}
+      />
     </SafeAreaView>
   );
 };
