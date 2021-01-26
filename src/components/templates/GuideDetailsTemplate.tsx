@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
 import { GuideDetails } from "../../types/guide";
 import layout from "../../constants/Layout";
-import { calcAirtime, formatAirtime } from "../../utils/index";
+import { calcAirtime, formatAirtime, chooseURL } from "../../utils/index";
 import Hyperlink from "react-native-hyperlink";
 
 const displayHeight = layout.window.height;
@@ -18,12 +18,6 @@ export const GuideDetailsTemplate: React.FC<Props> = ({
     return <Text>問題が発生しました。</Text>;
   }
   const title = guideDetail.title;
-  let url: string;
-  if (guideDetail.program_logo && guideDetail.program_logo.url !== "") {
-    url = "http:" + guideDetail.program_logo.url;
-  } else {
-    url = "http:" + guideDetail.service.logo_l.url;
-  }
 
   const subtitle = guideDetail.subtitle;
   const content = guideDetail.content === "" ? "内容未定" : guideDetail.content;
@@ -41,7 +35,7 @@ export const GuideDetailsTemplate: React.FC<Props> = ({
         <Image
           style={styles.image}
           source={{
-            uri: url,
+            uri: chooseURL(guideDetail),
           }}
         ></Image>
       </View>
