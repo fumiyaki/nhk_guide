@@ -27,7 +27,10 @@ export const GuideDetailsTemplate: React.FC<Props> = ({
   );
   const act = guideDetail.act;
   const airTime = calcAirtime(guideDetail.start_time, guideDetail.end_time);
-  const homepage = "http:" + guideDetail.program_url;
+  const homepage =
+    guideDetail.program_url !== undefined
+      ? "http:" + guideDetail.program_url
+      : "";
 
   return (
     <ScrollView showsVerticalScrollIndicator={true}>
