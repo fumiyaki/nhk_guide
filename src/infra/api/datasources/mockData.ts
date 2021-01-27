@@ -1,4 +1,4 @@
-import { Guide, GuideDetails } from "../../types/guide";
+import { Guide, GuideDetails } from "../../../types/guide";
 
 export const mockGuideData: Guide = {
   id: "2021011515550",

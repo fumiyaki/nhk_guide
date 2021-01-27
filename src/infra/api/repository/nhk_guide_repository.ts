@@ -3,7 +3,11 @@ import {
   fetchNHKGuideDetailsData,
 } from "../datasources/nhk_guide_request";
 import { mockGuideListData, mockGuideDetail } from "../datasources/mockData";
-import { Guide, GuideDetails, NHKGuideListViewModel } from "../../types/guide";
+import {
+  Guide,
+  GuideDetails,
+  NHKGuideListViewModel,
+} from "../../../types/guide";
 
 // const MODE = "api";
 const MODE = "mock";

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { NHK_API_KEY, NHK_API_URL } from "@env";
-import { Guide, GuideDetails } from "../../types/guide";
+import { Guide, GuideDetails } from "../../../types/guide";
 /*
  * APIで使用するURL一覧
   Ｐｒｏｇｒａｍ Ｌｉｓｔ ＡＰＩ （Ｖｅｒ．２）

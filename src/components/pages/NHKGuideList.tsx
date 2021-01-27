@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native";
 import { GuideList } from "../organisms/GuideList";
 import { Guide } from "../../types/guide";
-import { getNHKGuideListData } from "../../api/repository/nhk_guide_repository";
+import { getNHKGuideListData } from "../../infra/api/repository/nhk_guide_repository";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types/navigation";
 import dayjs from "dayjs";
