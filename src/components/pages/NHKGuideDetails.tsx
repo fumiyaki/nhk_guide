@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native";
 import { RootStackParamList } from "../../types/navigation";
 import { RouteProp } from "@react-navigation/native";
 import { GuideDetailsTemplate } from "../templates/GuideDetailsTemplate";
-import { getNHKGuideData } from "../../api/repository/nhk_guide_repository";
+import { getNHKGuideData } from "../../infra/api/repository/nhk_guide_repository";
 import { GuideDetails } from "../../types/guide";
 import { safeArea } from "../../utils/safeArea";
 

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import ja from "dayjs/locale/ja";
-import { mockGuideData } from "../api/datasources/mockData";
+import { mockGuideData } from "../infra/api/datasources/mockData";
 import { GuideDetails } from "../types/guide";
 dayjs.locale(ja);
 

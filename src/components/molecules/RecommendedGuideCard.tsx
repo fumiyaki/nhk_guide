@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { formatAirtime, truncate } from "../../utils";
 import layout from "../../constants/Layout";
 import { GuideDetails } from "../../types/guide";
-import { getNHKGuideData } from "../../api/repository/nhk_guide_repository";
+import { getNHKGuideData } from "../../infra/api/repository/nhk_guide_repository";
 import { chooseURL } from "../../utils/index";
 
 const displayHeight = layout.window.height;
