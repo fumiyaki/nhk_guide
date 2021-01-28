@@ -74,3 +74,8 @@ export type GuideDetails = {
   program_url: string;
   hashtags: string[];
 };
+
+export type NHKGuideListViewModel = {
+  guideList: Guide[];
+  recommendedGuide: Guide;
+};

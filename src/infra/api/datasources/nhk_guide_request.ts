@@ -1,6 +1,6 @@
 import axios from "axios";
 import { NHK_API_KEY, NHK_API_URL } from "@env";
-import { Guide, GuideDetails } from "../../types/guide";
+import { Guide, GuideDetails } from "../../../types/guide";
 /*
  * APIで使用するURL一覧
   Ｐｒｏｇｒａｍ Ｌｉｓｔ ＡＰＩ （Ｖｅｒ．２）
@@ -25,28 +25,28 @@ export const fetchNHKGuideListData = async (
   date: string
 ): Promise<Guide[] | undefined> => {
   const url = `${NHK_API_URL}/list/${area}/${service}/${date}.json?key=${NHK_API_KEY}`;
-  console.log("通信実行", {
+  console.log("通信実行 - fetchNHKGuideListData", {
     url,
     area,
     service,
     date,
   });
   const res = await axios.get(url).catch((err) => {
-    console.log("受信エラー¥n¥n", err);
+    console.log("受信エラー - fetchNHKGuideListData", err);
     return undefined;
   });
   if (res && res.status === 200) {
-    console.log("受信データ¥n¥n", res.data);
+    console.log("受信データ - fetchNHKGuideListData", res.data);
     let data: Guide[];
     try {
-      data = res.data.list.g1.map((doc: Guide) => ({ ...doc }));
+      data = res.data.list[service].map((doc: Guide) => ({ ...doc }));
       return data;
-    } catch (e) {
-      console.log(`変換エラー発生 ${e}`);
+    } catch (err) {
+      console.log("変換エラー発生 - fetchNHKGuideListData", err);
       return undefined;
     }
   } else {
-    console.error("受信エラー", res);
+    console.error("受信エラー - fetchNHKGuideListData", res);
     return undefined;
   }
 };
@@ -63,7 +63,7 @@ export const fetchNHKGuideDetailsData = async (
   id: string
 ): Promise<GuideDetails | undefined> => {
   const url = `${NHK_API_URL}/info/${area}/${service}/${id}.json?key=${NHK_API_KEY}`;
-  console.log("通信実行", {
+  console.log("通信実行 - fetchNHKGuideDetailsData", {
     url,
     area,
     service,
@@ -71,21 +71,21 @@ export const fetchNHKGuideDetailsData = async (
   });
 
   const res = await axios.get(url).catch((err) => {
-    console.log("受信エラー¥n¥n", err);
+    console.log("受信エラー - fetchNHKGuideDetailsData", err);
     return undefined;
   });
   if (res && res.status === 200) {
-    console.log("受信データ¥n¥n", res.data);
+    console.log("受信データ - fetchNHKGuideDetailsData", res.data);
     let data: GuideDetails;
     try {
-      data = res.data.list.g1[0];
+      data = res.data.list[service][0];
       return data;
-    } catch (e) {
-      console.log(`変換エラー発生 ${e}`);
+    } catch (err) {
+      console.log("変換エラー発生 - fetchNHKGuideDetailsData", err);
       return undefined;
     }
   } else {
-    console.error("受信エラー", res);
+    console.error("受信エラー - fetchNHKGuideDetailsData", res);
     return undefined;
   }
 };

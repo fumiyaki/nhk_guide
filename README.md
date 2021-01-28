@@ -1,10 +1,12 @@
 # 開発環境の準備
 
 1. Node.js v14.15.4 をインストール
-2. リポジトリをクローン
-3. Terminal から`npm install`を実行
-4. `npm run start`で実行開始
-5. 立ち上がったブラウザから`Run on Android device/emulator`か`Run on iOS simulator`を押下
+1. リポジトリをクローン
+1. .env ファイルをプロジェクト直下に追加し
+   `NHK_API_KEY=OOOOOOOOO`, `NHK_API_URL=https://api.nhk.or.jp/v2/pg` の 2 つを記述
+1. Terminal から`npm install`を実行
+1. `npm run start`で実行開始
+1. 立ち上がったブラウザから`Run on Android device/emulator`か`Run on iOS simulator`を押下
 
 注：Android エミュレータは実行前に起動しておくこと
 
@@ -68,6 +70,7 @@
 
 ### テストの作成
 
+- テストの準備をするのに手間取ってしまった。結局 expo init で tabs で template を作り、package.json や差分を見て環境を作った。
 - image コンポーネントのテストのしかたがわからなかった。image の DOM までは取得できたが、どうテストすればよいかわからなかった。
   考えたこと
   - 渡している url で検証できないか（以下を参考）
@@ -79,3 +82,15 @@
 
 - HomeStackNavigator を作っている時、initialRouteName を Home と Details で入れ替えた時にホットリロードで反映されず上手く動かないコードになっていると思い、色々と周辺コードを探り、時間を使ってしまった。再起動させたら普通に動いた。
 - subTitle と act が表示されていない時のテストの書き方がわからなかった。
+
+## 初回起動時エリアとサービスを設定出来る
+
+- area と service を state 管理してしまい、嵌った。
+
+  `const { setting } = useContext(SettingContext);`
+
+  `const [area, setArea] = useState<string>("")`
+
+  `const [service, setService] = useState<string>("")`
+
+  と最初書いており、area・service が更新されるたび、再レンダリングされ、最終的に area と service は""になり、list と recommendedGuide は undefined になってしまう問題に嵌った。
