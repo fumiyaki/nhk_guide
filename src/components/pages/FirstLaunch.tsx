@@ -16,8 +16,6 @@ export const FirstLaunch: React.FC = () => {
   useEffect(() => {
     const initialLoadSetting = async () => {
       const data: Setting = await loadSetting();
-      console.log("保存したdataは", data);
-
       setSetting(data);
     };
     initialLoadSetting();

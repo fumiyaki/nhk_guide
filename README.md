@@ -82,3 +82,15 @@
 
 - HomeStackNavigator を作っている時、initialRouteName を Home と Details で入れ替えた時にホットリロードで反映されず上手く動かないコードになっていると思い、色々と周辺コードを探り、時間を使ってしまった。再起動させたら普通に動いた。
 - subTitle と act が表示されていない時のテストの書き方がわからなかった。
+
+## 初回起動時エリアとサービスを設定出来る
+
+- area と service を state 管理してしまい、嵌った。
+
+  `const { setting } = useContext(SettingContext);`
+
+  `const [area, setArea] = useState<string>("")`
+
+  `const [service, setService] = useState<string>("")`
+
+  と最初書いており、area・service が更新されるたび、再レンダリングされ、最終的に area と service は""になり、list と recommendedGuide は undefined になってしまう問題に嵌った。
