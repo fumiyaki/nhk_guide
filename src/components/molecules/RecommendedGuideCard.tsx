@@ -1,26 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { formatAirtime, truncate } from "../../utils";
 import layout from "../../constants/Layout";
 import { GuideDetails } from "../../types/guide";
 import { getNHKGuideData } from "../../infra/api/repository/nhk_guide_repository";
 import { chooseURL } from "../../utils/index";
+import { SettingContext } from "../../contexts/settingContext";
 
 const displayHeight = layout.window.height;
 const displayWidth = layout.window.width;
-
-const area = "130";
-const service = "g1";
 
 type Props = {
   guideId: string;
 };
 
 export const RecommendedGuideCard: React.FC<Props> = ({ guideId }: Props) => {
+  const { setting } = useContext(SettingContext);
   const [guideDetails, setGuideDetails] = useState<GuideDetails | undefined>();
   useEffect(() => {
     const getData = async () => {
-      const data = await getNHKGuideData(area, service, guideId);
+      const data = await getNHKGuideData(
+        setting?.area,
+        setting?.service,
+        guideId
+      );
       setGuideDetails(data);
     };
     getData();
