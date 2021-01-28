@@ -4,20 +4,8 @@ export const AREA = [
     label: "ＮＨＫ総合１",
   },
   {
-    value: "g2",
-    label: "ＮＨＫ総合２",
-  },
-  {
     value: "e1",
     label: "ＮＨＫＥテレ１",
-  },
-  {
-    value: "e2",
-    label: "ＮＨＫＥテレ２",
-  },
-  {
-    value: "e3",
-    label: "ＮＨＫＥテレ３",
   },
   {
     value: "e4",
@@ -28,16 +16,8 @@ export const AREA = [
     label: "ＮＨＫＢＳ１",
   },
   {
-    value: "s2",
-    label: "ＮＨＫＢＳ１(１０２ｃｈ)",
-  },
-  {
     value: "s3",
     label: "ＮＨＫＢＳプレミアム",
-  },
-  {
-    value: "s4",
-    label: "ＮＨＫＢＳプレミアム(１０４ｃｈ)",
   },
   {
     value: "r1",
@@ -50,30 +30,6 @@ export const AREA = [
   {
     value: "r3",
     label: "ＮＨＫＦＭ",
-  },
-  {
-    value: "n1",
-    label: "ＮＨＫネットラジオ第1",
-  },
-  {
-    value: "n2",
-    label: "ＮＨＫネットラジオ第2",
-  },
-  {
-    value: "n3",
-    label: "ＮＨＫネットラジオＦＭ",
-  },
-  {
-    value: "tv",
-    label: "テレビ全て",
-  },
-  {
-    value: "radio",
-    label: "ラジオ全て",
-  },
-  {
-    value: "netradio",
-    label: "ネットラジオ全て",
   },
 ];
 
