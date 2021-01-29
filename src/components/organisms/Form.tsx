@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { AREA, SERVICE } from "../../constants/AppService";
 import { Button } from "../atoms/Button";
+import { Platform } from "react-native";
 
 type Props = {
   title: string;
@@ -70,12 +71,16 @@ const styles = StyleSheet.create({
     margin: 50,
   },
   area_container: {
-    zIndex: 10,
     marginBottom: 50,
+    ...(Platform.OS !== "android" && {
+      zIndex: 50,
+    }),
   },
   service_container: {
-    zIndex: 5,
     marginBottom: 60,
+    ...(Platform.OS !== "android" && {
+      zIndex: 10,
+    }),
   },
   label: {
     fontWeight: "bold",
